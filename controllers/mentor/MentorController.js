@@ -1,9 +1,9 @@
 const { response } = require('express')
-const Employee = require('../../models/Employee')
+const Mentor = require('../../models/Mentor')
 
-//show the list of Employee from db
+//show the list of Mentor from db
 const index = (req, res, next) => {
-    Employee.find()
+    Mentor.find()
     .then(response => {
         res.json({
             response
@@ -16,10 +16,10 @@ const index = (req, res, next) => {
     })
 }
 
-//show single employee by id
-const showEmployee = (req, res ,next) => {
-    let employeeId = req.body.employeeId
-    Employee.findById(employeeId)
+//show single mentor by id
+const showMentor = (req, res ,next) => {
+    let mentorId = req.body.mentorId
+    Mentor.findById(mentorId)
     .then(response => {
         res.json({
             response
@@ -32,19 +32,19 @@ const showEmployee = (req, res ,next) => {
     })
 }
 
-//add new employee
-const addEmployee = (req, res, next) => {
-    let employee = new Employee({
+//add new mentor
+const addMentor = (req, res, next) => {
+    let mentor = new Mentor({
         name: req.body.name,
         designation: req.body.designation,
         email: req.body.email,
         phone: req.body.phone,
         age: req.body.age
     })
-    employee.save()
+    mentor.save()
     .then(response => {
         res.json({
-            message: 'Employee Added Successfully!'
+            message: 'Mentor Added Successfully!'
         })
     })
     .catch(error => {
@@ -54,9 +54,9 @@ const addEmployee = (req, res, next) => {
     })
 }
 
-//update an employee 
-const updateEmployee = (req, res, next) => {
-    let employeeId = req.body.employeeId
+//update an mentor 
+const updateMentor = (req, res, next) => {
+    let mentorId = req.body.mentorId
 
     let updateData = {
         name: req.body.name,
@@ -66,10 +66,10 @@ const updateEmployee = (req, res, next) => {
         age: req.body.age
     }
 
-    Employee.findByIdAndUpdate(employeeId, {$set: updateData})
+    Mentor.findByIdAndUpdate(mentorId, {$set: updateData})
     .then(response => {
         res.json({
-            message: 'Employee Updated Successfully!'
+            message: 'Mentor Updated Successfully!'
         })
     })
     .catch(error => {
@@ -79,14 +79,14 @@ const updateEmployee = (req, res, next) => {
     })
 }
 
-//delete an employee
-const deleteEmployee = (req, res ,next) =>{
-    let employeeId = req.body.employeeId
+//delete an mentor
+const deleteMentor = (req, res ,next) =>{
+    let mentorId = req.body.mentorId
 
-    Employee.findByIdAndRemove(employeeId)
+    Mentor.findByIdAndRemove(mentorId)
     .then(() => {
         res.json({
-            message: 'Employee deleted successfully'
+            message: 'Mentor deleted successfully'
         })
     })
     .catch(errror => {
@@ -98,5 +98,5 @@ const deleteEmployee = (req, res ,next) =>{
 }
 
 module.exports = {
-    index, showEmployee, addEmployee, updateEmployee, deleteEmployee
+    index, showMentor, addMentor, updateMentor, deleteMentor
 }

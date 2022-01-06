@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
 const EmployeeRoute = require('./routes/employee')
+const MentorRoute = require('./routes/mentor')
 const AuthRoute = require('./routes/auth')
 
 mongoose.connect('mongodb://localhost:27017/projectdb', {useNewUrlParser: true, useUnifiedTopology: true})//projectdb - database name ; 27017 - default port
@@ -35,5 +36,6 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 })
 
-app.use('/api/employee', EmployeeRoute)
+app.use('/employee', EmployeeRoute)
+app.use('/admin/mentor', MentorRoute)
 app.use('/api', AuthRoute)
