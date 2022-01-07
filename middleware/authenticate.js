@@ -1,4 +1,6 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+
+console.log('abc');
 
 const authenticate = (req, res ,next) => {
     try {
